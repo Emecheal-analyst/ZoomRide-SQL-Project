@@ -42,11 +42,6 @@ After cleaning, the table has 298 rows and 6 distinct cities.
 `CASE`, `TRIM`, `UPDATE`, `DELETE`, `INNER JOIN`, `DATE_FORMAT`, NULL handling
 
 ## How to run
-1. Open [onecompiler.com/mysql](https://onecompiler.com/mysql) (MySQL).
+1. Open [onecompiler.com/mysql](https://onecompiler.com/mysql/455jv5trn) (MySQL).
 2. Paste `setup.sql` and run it.
 3. Run the queries in `queries.sql` in order.
-
-## Files
-- `setup.sql`: creates and fills the tables
-- `queries.sql`: my queries, with a note under each one
-- `memo.md`: short memo to the manager
