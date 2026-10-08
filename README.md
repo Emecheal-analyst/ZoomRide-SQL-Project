@@ -1,2 +1,52 @@
-# ZoomRide-SQL-Project
-SQL analysis of a ride-hailing company across 6 African cities: data cleaning, aggregation and joins, written in MySQL on OneCompiler.
+# ZoomRide SQL Analysis
+
+## Overview
+ZoomRide is a (fictional) ride-hailing company operating in six African cities:
+Lagos, Abuja, Port Harcourt, Nairobi, Accra and Kampala. This project uses SQL
+(MySQL) to clean a deliberately messy dataset and answer business questions
+about where the company should invest.
+
+## Data
+Three linked tables:
+- `customers` (40 rows): who rides
+- `drivers` (20 rows): who drives, with city, vehicle type and rating
+- `trips` (300 rows before cleaning): one row per booked trip, linking a
+  customer to a driver
+
+All fares are in Naira. Cancelled trips have a fare of 0.
+
+## Data problems found and fixed
+| Problem | What I did |
+|---|---|
+| Inconsistent city names (`PH`, `Port-Harcourt`, `Nairobbi`, `Kampla`, leading spaces) | Standardised to 6 spellings with `TRIM` and `UPDATE` |
+| 2 duplicate trips (IDs 299 and 300, copies of 82 and 253) | Found with `GROUP BY ... HAVING COUNT(*) > 1`, deleted the later copies |
+| 9 Completed trips with a missing (NULL) fare | Left as they are and reported, rather than inventing numbers |
+
+After cleaning, the table has 298 rows and 6 distinct cities.
+
+## Analysis
+- Trips and revenue by city (`COUNT`, `SUM`, `AVG`, `GROUP BY`)
+- Revenue by month using `DATE_FORMAT`
+- Revenue by vehicle type using an `INNER JOIN` between `trips` and `drivers`
+
+## Key findings
+- **Lagos earns the most:** 218,890 Naira from 93 completed trips, more than
+  double the next city (Accra, 92,640).
+- **Accra has the highest average fare** (2,807.27), but far fewer trips.
+- Revenue figures are slightly understated because of the 9 missing fares.
+- Before investing, I would want cost data (driver pay, fuel) to compare
+  profit, not just revenue.
+
+## SQL skills used
+`SELECT`, `WHERE`, `GROUP BY`, `HAVING`, `ORDER BY`, aggregate functions,
+`CASE`, `TRIM`, `UPDATE`, `DELETE`, `INNER JOIN`, `DATE_FORMAT`, NULL handling
+
+## How to run
+1. Open [onecompiler.com/mysql](https://onecompiler.com/mysql) (MySQL).
+2. Paste `setup.sql` and run it.
+3. Run the queries in `queries.sql` in order.
+
+## Files
+- `setup.sql`: creates and fills the tables
+- `queries.sql`: my queries, with a note under each one
+- `memo.md`: short memo to the manager
