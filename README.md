@@ -43,5 +43,4 @@ After cleaning, the table has 298 rows and 6 distinct cities.
 
 ## How to run
 1. Open [onecompiler.com/mysql](https://onecompiler.com/mysql/455jv5trn) (MySQL).
-2. Paste `setup.sql` and run it.
-3. Run the queries in `queries.sql` in order.
+2. Click Run to run the queries
